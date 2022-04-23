@@ -9,7 +9,7 @@ const Home: NextPage = () => {
   return (
     <div>
       <p className="text-xl font-bold">Click!</p>
-      <Button onClick={handleClick}>Greet</Button>
+      <Button onClick={handleClick} className={'bg-red-300 hover:bg-red-500'}>Greet</Button>
     </div>
   );
 };
