@@ -1,17 +1,41 @@
-import { Button } from "@mantine/core";
-import type { NextPage } from "next";
+import type { NextPage } from 'next'
+import Head from 'next/head'
+import { client } from '../libs/client'
 
-const handleClick = () => {
-  alert("Hello!");
-};
+type Props = {
+  data: {
+    text: string
+  }
+}
 
-const Home: NextPage = () => {
+const Home: NextPage<Props> = ({ data }) => {
   return (
     <div>
-      <p className="text-xl font-bold">Click!</p>
-      <Button onClick={handleClick} className={'bg-red-300 hover:bg-red-500'}>Greet</Button>
+      <Head>
+        <title>Create Next App</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <main >
+        <h1>{data.text}</h1>
+        <p>
+          Get started by editing <code >pages/index.js</code>
+        </p>
+      </main>
     </div>
   );
 };
 
-export default Home;
+export const getStaticProps = async () => {
+  const data = await client.get({
+    endpoint: 'blog',
+  });
+
+  return {
+    props: {
+      data,
+    },
+  }
+}
+
+export default Home
