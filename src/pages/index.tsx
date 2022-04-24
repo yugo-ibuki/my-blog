@@ -1,4 +1,4 @@
-import type { InferGetStaticPropsType, NextPage } from 'next'
+import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
 import Head from 'next/head'
 import { client } from '../libs/client'
 
@@ -61,9 +61,16 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ blogs 
   )
 }
 
-export const getStaticProps = async () => {
-  const data = await client.get({
+export const getStaticProps: GetStaticProps<{}, {id: string}> = async (ctx) => {
+  if (!ctx.params) {
+    return {
+      notFound: true
+    }
+  }
+
+  const data = await client.getListDetail({
     endpoint: 'blogs',
+    contentId: ctx.params.id,
   })
 
   return {
