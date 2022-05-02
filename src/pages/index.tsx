@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { client } from '../libs/client'
 import { MicroCMSListResponse } from 'microcms-js-sdk/dist/cjs/types'
 import { MicroCMSContentId, MicroCMSDate } from 'microcms-js-sdk/dist/esm'
+import Link from 'next/link'
 
 type Blog = {
   id: number,
@@ -21,20 +22,21 @@ const Index: NextPage<Props> = (props) => {
       </Head>
 
       <main>
+        <ul>
         {
           props.contents.map(blog => {
             return (
-              <div key={blog.id} className={'mt-5'}>
-                <div className={'mb-10'}>{blog.title}</div>
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: `${blog.content}`,
-                  }}
-                />
-              </div>
+              <li key={blog.id}>
+                <Link href={`/blog/${blog.id}`}>
+                  <a>
+                    {blog.title}
+                  </a>
+                </Link>
+              </li>
             )
           })
         }
+        </ul>
       </main>
     </div>
   )
