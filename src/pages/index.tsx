@@ -2,10 +2,9 @@ import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import { client } from '../libs/client'
 import { MicroCMSListResponse } from 'microcms-js-sdk/dist/cjs/types'
-import { MicroCMSContentId, MicroCMSDate } from 'microcms-js-sdk/dist/esm'
 import Link from 'next/link'
 
-type Blog = {
+export type Blog = {
   id: number,
   title: string,
   content: string
@@ -27,7 +26,7 @@ const Index: NextPage<Props> = (props) => {
           props.contents.map(blog => {
             return (
               <li key={blog.id}>
-                <Link href={`/blog/${blog.id}`}>
+                <Link href={`/blogs/${blog.id}`}>
                   <a>
                     {blog.title}
                   </a>
