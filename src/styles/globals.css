@@ -1,2 +1,6 @@
 @tailwind components;
 @tailwind utilities;
+
+.editor img {
+    @apply w-full;
+}
