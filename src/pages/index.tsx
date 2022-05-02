@@ -1,39 +1,18 @@
-import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import { client } from '../libs/client'
+import { MicroCMSListResponse } from 'microcms-js-sdk/dist/cjs/types'
+import { MicroCMSContentId, MicroCMSDate } from 'microcms-js-sdk/dist/esm'
 
-type Props = {
-  blogs: {
-    contents:
-      {
-        id: string,
-        title: string,
-        url: string,
-        content: string,
-        width: number,
-        category: {
-          id: string,
-          createdAt: string,
-          updatedAt: string,
-          publishedAt: string,
-          revisedAt: string,
-          name: string
-        },
-        eyecatch: {
-          height: number
-        },
-        publishedAt: string,
-        revisedAt: string,
-        createdAt: string,
-        updatedAt: string,
-      }[],
-    totalCount: number,
-    offset: number,
-    limit: number,
-  }
+type Blog = {
+  id: number,
+  title: string,
+  content: string
 }
 
-const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ blogs }: Props) => {
+type Props = MicroCMSListResponse<Blog> & MicroCMSContentId & MicroCMSDate
+
+const Index: NextPage<Props> = (props) => {
   return (
     <div>
       <Head>
@@ -41,9 +20,9 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ blogs 
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main >
+      <main>
         {
-          blogs.contents.map(blog => {
+          props.contents.map(blog => {
             return (
               <div key={blog.id} className={'mt-5'}>
                 <div className={'mb-10'}>{blog.title}</div>
@@ -61,23 +40,11 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ blogs 
   )
 }
 
-export const getStaticProps: GetStaticProps<{}, {id: string}> = async (ctx) => {
-  if (!ctx.params) {
-    return {
-      notFound: true
-    }
-  }
-
-  const data = await client.getListDetail({
-    endpoint: 'blogs',
-    contentId: ctx.params.id,
-  })
-
+export const getStaticProps: GetStaticProps<{}, {id: string}> = async () => {
+  const data = await client.getList<Blog>({endpoint: 'blogs'})
   return {
-    props: {
-      blogs: data.contents
-    },
+    props: data
   }
 }
 
-export default Home
+export default Index
