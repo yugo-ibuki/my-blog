@@ -8,11 +8,14 @@ type Props = Blog & MicroCMSContentId & MicroCMSDate
 const BlogId: NextPage<Props> = (props) => {
   return (
     <div>
-      <h1>{props.title}</h1>
-      <time>{props.createdAt}</time>
-      <div
-        dangerouslySetInnerHTML={{ __html: props.content }}
-      />
+      <div className={'w-full'}>
+        <h1>{props.title}</h1>
+        <time>{props.createdAt}</time>
+        <div
+          className={'prose editor'}
+          dangerouslySetInnerHTML={{ __html: props.content }}
+        />
+      </div>
     </div>
   )
 }
