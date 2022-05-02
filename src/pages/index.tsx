@@ -10,7 +10,7 @@ type Blog = {
   content: string
 }
 
-type Props = MicroCMSListResponse<Blog> & MicroCMSContentId & MicroCMSDate
+type Props = MicroCMSListResponse<Blog>
 
 const Index: NextPage<Props> = (props) => {
   return (
@@ -40,7 +40,7 @@ const Index: NextPage<Props> = (props) => {
   )
 }
 
-export const getStaticProps: GetStaticProps<{}, {id: string}> = async () => {
+export const getStaticProps: GetStaticProps<Props> = async () => {
   const data = await client.getList<Blog>({endpoint: 'blogs'})
   return {
     props: data
