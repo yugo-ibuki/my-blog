@@ -1,18 +1,8 @@
 import type { GetStaticProps, NextPage } from 'next'
-import Head from 'next/head'
 import { client } from '../libs/client'
 import { MicroCMSListResponse } from 'microcms-js-sdk/dist/cjs/types'
-import Link from 'next/link'
-import { Thumbnail } from '../components/Thumbnail'
-
-export type Blog = {
-  id: number,
-  title: string,
-  content: string
-  eyecatch: {
-    url: string
-  }
-}
+import { Blog, Post } from '@components/Posts'
+import { Box, Grid } from '@mantine/core'
 
 type Props = MicroCMSListResponse<Blog>
 
@@ -20,22 +10,23 @@ const Index: NextPage<Props> = (props) => {
   return (
     <div>
       <main>
-        <ul>
-        {
-          props.contents.map(blog => {
-            return (
-              <li key={blog.id}>
-                <Link href={`/blogs/${blog.id}`}>
-                  <a>
-                    <Thumbnail eyecatch={blog.eyecatch} />
-                    {blog.title}
-                  </a>
-                </Link>
-              </li>
-            )
-          })
-        }
-        </ul>
+        <Box className={'mt-10'}>
+          <Grid className={'gap-y-8'}>
+            {
+              props.contents.map(blog =>
+                <Post
+                  key={blog.id}
+                  blog={{
+                    id: blog.id,
+                    title: blog.title,
+                    content: blog.content,
+                    eyecatch: blog.eyecatch
+                  }}
+                />
+              )
+            }
+          </Grid>
+        </Box>
       </main>
     </div>
   )

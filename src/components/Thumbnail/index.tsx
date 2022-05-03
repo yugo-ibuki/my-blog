@@ -9,7 +9,7 @@ export const Thumbnail: FC<ThumbnailProps> = ({ eyecatch }) => {
     <div>
       {
         !!eyecatch?.url ?
-          <img src={eyecatch.url} alt=""/>
+          <img src={eyecatch.url} alt="" />
           :
           <div className={'w-full h-[350px] bg-gray-200 relative'} >
             <span className={'absolute w-[100px] inset-2/4 -translate-y-1/2 -translate-x-1/2'}>No Image</span>
