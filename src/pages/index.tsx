@@ -15,6 +15,7 @@ const Index: NextPage<Props> = (props) => {
   const form = useForm<SearchWord>({initialValues: { word: '' }})
   const handleSubmit = async (values: SearchWord) => {
     const q = values.word
+    // TODO リファクタする fetchを切り出す
     const data = await fetch('/api/search', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
