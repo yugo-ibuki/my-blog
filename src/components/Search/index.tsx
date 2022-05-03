@@ -20,6 +20,16 @@ export const Search: FC<SearchProps> = ({ form, handleSubmit }) => {
         <Grid.Col className={'max-w-[80%]'}>
           <Input
             placeholder={'Search...'}
+            rightSection={
+              <button
+                type={'reset'}
+                onClick={async () => {
+                  form.reset()
+                  await handleSubmit({ word: '' })
+                }}
+                className={'hover:bg-transparent opacity-30 hover:opacity-100 text-slate-700'}
+              >✖︎</button>
+            }
             {...form.getInputProps('word')}
           />
         </Grid.Col>

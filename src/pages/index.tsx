@@ -5,14 +5,26 @@ import { Blog, Post } from '@components/Posts'
 import { Box, Grid } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { Search, SearchWord } from '@components/Search'
+import { useState } from 'react'
 
 type Props = MicroCMSListResponse<Blog>
 
 const Index: NextPage<Props> = (props) => {
+  const [searchResult, setSearchResult] = useState<MicroCMSListResponse<Blog>>()
   const form = useForm<SearchWord>({initialValues: { word: '' }})
-  const handleSubmit = (values: SearchWord) => {
-    console.log(values)
+  const handleSubmit = async (values: SearchWord) => {
+    const q = values.word
+    const data = await fetch('/api/search', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({q})
+    })
+    const json: MicroCMSListResponse<Blog> = await data.json()
+    setSearchResult(json)
   }
+
+  const contents = searchResult ? searchResult.contents : props.contents
+
   return (
     <Box className={'mt-10'}>
       <Box mb={20}>
@@ -20,7 +32,7 @@ const Index: NextPage<Props> = (props) => {
       </Box>
       <Grid className={'gap-y-8'}>
         {
-          props.contents.map(blog =>
+          contents.map(blog =>
             <Post
               key={blog.id}
               blog={{
