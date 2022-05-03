@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@mantine/core": "^4.1.3",
+    "@mantine/form": "^4.2.2",
     "@mantine/hooks": "^4.1.3",
     "@mantine/next": "^4.1.3",
     "@tailwindcss/typography": "^0.5.2",
