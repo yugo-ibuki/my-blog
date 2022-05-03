@@ -11,6 +11,7 @@ type Props = MicroCMSListResponse<Blog>
 
 const Index: NextPage<Props> = (props) => {
   const [searchResult, setSearchResult] = useState<MicroCMSListResponse<Blog>>()
+  const [isArticleFound, setIsArticleFound] = useState<boolean>(true)
   const form = useForm<SearchWord>({initialValues: { word: '' }})
   const handleSubmit = async (values: SearchWord) => {
     const q = values.word
@@ -19,6 +20,10 @@ const Index: NextPage<Props> = (props) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({q})
     })
+    if (!data.ok) {
+      setIsArticleFound(false)
+      return
+    }
     const json: MicroCMSListResponse<Blog> = await data.json()
     setSearchResult(json)
   }
@@ -32,6 +37,15 @@ const Index: NextPage<Props> = (props) => {
       </Box>
       <Grid className={'gap-y-8'}>
         {
+          !isArticleFound
+            ?
+              <p className={'text-red-300'}>不具合が発生しました。</p>
+            :
+          // TODO リファクタする
+          contents.length === 0
+          ?
+            <p>記事が見つかりませんでした。</p>
+          :
           contents.map(blog =>
             <Post
               key={blog.id}
