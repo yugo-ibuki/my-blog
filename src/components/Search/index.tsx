@@ -8,11 +8,14 @@ export type SearchWord = {
 
 type SearchProps = {
   form: UseFormReturnType<SearchWord>
+  handleSubmit: ({}: SearchWord) => void
 }
 
-export const Search: FC<SearchProps> = ({ form }) => {
+export const Search: FC<SearchProps> = ({ form, handleSubmit }) => {
   return (
-    <form onSubmit={form.onSubmit((values) => console.log(values))}>
+    <form
+      onSubmit={form.onSubmit((values) => handleSubmit(values))}
+    >
       <Grid>
         <Grid.Col className={'max-w-[80%]'}>
           <Input

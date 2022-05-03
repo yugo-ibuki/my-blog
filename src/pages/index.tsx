@@ -10,10 +10,13 @@ type Props = MicroCMSListResponse<Blog>
 
 const Index: NextPage<Props> = (props) => {
   const form = useForm<SearchWord>({initialValues: { word: '' }})
+  const handleSubmit = (values: SearchWord) => {
+    console.log(values)
+  }
   return (
     <Box className={'mt-10'}>
       <Box mb={20}>
-        <Search form={form} />
+        <Search form={form} handleSubmit={handleSubmit} />
       </Box>
       <Grid className={'gap-y-8'}>
         {
