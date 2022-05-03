@@ -15,11 +15,6 @@ type Props = MicroCMSListResponse<Blog>
 const Index: NextPage<Props> = (props) => {
   return (
     <div>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <main>
         <ul>
         {
