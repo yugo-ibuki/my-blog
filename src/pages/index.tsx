@@ -8,27 +8,23 @@ type Props = MicroCMSListResponse<Blog>
 
 const Index: NextPage<Props> = (props) => {
   return (
-    <div>
-      <main>
-        <Box className={'mt-10'}>
-          <Grid className={'gap-y-8'}>
-            {
-              props.contents.map(blog =>
-                <Post
-                  key={blog.id}
-                  blog={{
-                    id: blog.id,
-                    title: blog.title,
-                    content: blog.content,
-                    eyecatch: blog.eyecatch
-                  }}
-                />
-              )
-            }
-          </Grid>
-        </Box>
-      </main>
-    </div>
+    <Box className={'mt-10'}>
+      <Grid className={'gap-y-8'}>
+        {
+          props.contents.map(blog =>
+            <Post
+              key={blog.id}
+              blog={{
+                id: blog.id,
+                title: blog.title,
+                content: blog.content,
+                eyecatch: blog.eyecatch
+              }}
+            />
+          )
+        }
+      </Grid>
+    </Box>
   )
 }
 
