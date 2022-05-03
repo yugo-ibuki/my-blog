@@ -3,28 +3,17 @@ import { client } from '../libs/client'
 import { MicroCMSListResponse } from 'microcms-js-sdk/dist/cjs/types'
 import { Blog, Post } from '@components/Posts'
 import { Box, Button, Grid, Input } from '@mantine/core'
+import { useForm } from '@mantine/form'
+import { Search, SearchWord } from '@components/Search'
 
 type Props = MicroCMSListResponse<Blog>
 
 const Index: NextPage<Props> = (props) => {
+  const form = useForm<SearchWord>({initialValues: { word: '' }})
   return (
     <Box className={'mt-10'}>
       <Box mb={20}>
-        <Grid>
-          <Grid.Col className={'max-w-[80%]'}>
-            <Input />
-          </Grid.Col>
-          <Grid.Col className={'max-w-[20%]'}>
-            <Button
-              variant="gradient"
-              color={'dark'}
-              fullWidth
-              className={"text-cyan-300 border-solid border-cyan-200 border-[1px] rounded hover:border-cyan-500 hover:text-cyan-500"}
-            >
-              Search
-            </Button>
-          </Grid.Col>
-        </Grid>
+        <Search form={form} />
       </Box>
       <Grid className={'gap-y-8'}>
         {
