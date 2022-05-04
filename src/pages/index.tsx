@@ -2,7 +2,7 @@ import type { GetStaticProps, NextPage } from 'next'
 import { client } from '../libs/client'
 import { MicroCMSListResponse } from 'microcms-js-sdk/dist/cjs/types'
 import { Blog, Post, Search, SearchWord } from '@components'
-import { Box, Grid } from '@mantine/core'
+import { Box, Button, Grid } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { useState } from 'react'
 

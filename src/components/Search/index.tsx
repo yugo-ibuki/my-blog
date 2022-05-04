@@ -27,7 +27,7 @@ export const Search: FC<SearchProps> = ({ form, handleSubmit }) => {
                   form.reset()
                   await handleSubmit({ word: '' })
                 }}
-                className={'hover:bg-transparent opacity-30 hover:opacity-100 text-slate-700'}
+                className={'hover:bg-transparent opacity-30 hover:opacity-100 text-slate-700 bg-white'}
               >✖︎</button>
             }
             {...form.getInputProps('word')}
@@ -39,7 +39,7 @@ export const Search: FC<SearchProps> = ({ form, handleSubmit }) => {
             variant="gradient"
             color={'dark'}
             fullWidth
-            className={"text-cyan-300 border-solid border-cyan-200 border-[1px] rounded hover:border-cyan-500 hover:text-cyan-500"}
+            className={"text-cyan-300 border-solid border-cyan-200 border-[1px] rounded hover:border-cyan-500 hover:text-cyan-500 bg-white"}
           >
             Search
           </Button>
