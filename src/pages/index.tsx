@@ -1,10 +1,9 @@
 import type { GetStaticProps, NextPage } from 'next'
 import { client } from '../libs/client'
 import { MicroCMSListResponse } from 'microcms-js-sdk/dist/cjs/types'
-import { Blog, Post } from '@components/Posts'
+import { Blog, Post, Search, SearchWord } from '@components'
 import { Box, Grid } from '@mantine/core'
 import { useForm } from '@mantine/form'
-import { Search, SearchWord } from '@components/Search'
 import { useState } from 'react'
 
 type Props = MicroCMSListResponse<Blog>
