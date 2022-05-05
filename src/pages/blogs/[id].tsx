@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { client } from '../../libs/client'
 import { MicroCMSContentId, MicroCMSDate } from 'microcms-js-sdk/dist/esm'
-import { Blog } from '../index'
+import { Blog } from '@components'
 import { formatDate } from '../../libs/formatDate'
 
 type Props = Blog & MicroCMSContentId & MicroCMSDate
