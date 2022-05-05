@@ -18,7 +18,7 @@ type PostProps = {
 
 export const Post: FC<PostProps> = ({blog}) => {
   return (
-    <Grid.Col key={blog.id}>
+    <Grid.Col className={'w-1/2 max-w-[50%]'}>
       <Link href={`/blogs/${blog.id}`}>
         <a>
           <Thumbnail eyecatch={blog.eyecatch} />

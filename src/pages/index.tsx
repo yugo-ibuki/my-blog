@@ -44,7 +44,9 @@ const Index: NextPage<Props> = (props) => {
           // TODO リファクタする
           contents.length === 0
           ?
-            <p>記事が見つかりませんでした。</p>
+            <div className={'w-full flex justify-center mt-5'}>
+              <p className={'align-center p-5 text-cyan-500 border border-cyan-300 rounded'}>記事が見つかりませんでした。</p>
+            </div>
           :
           contents.map(blog =>
             <Post

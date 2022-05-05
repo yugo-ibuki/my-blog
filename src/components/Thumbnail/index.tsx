@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { Box } from '@mantine/core'
 
 type ThumbnailProps = {
   eyecatch?: { url?: string }
@@ -11,8 +12,15 @@ export const Thumbnail: FC<ThumbnailProps> = ({ eyecatch }) => {
         !!eyecatch?.url ?
           <img src={eyecatch.url} alt="" />
           :
-          <div className={'w-full h-[350px] bg-gray-200 relative'} >
-            <span className={'absolute w-[100px] inset-2/4 -translate-y-1/2 -translate-x-1/2'}>No Image</span>
+          <div className={'w-full h-[170px] bg-gray-200 relative'} >
+            <Box
+              className={'absolute left-[50%] top-[50%]'}
+              sx={{
+                transform: 'translate(-50%, -50%)',
+              }}
+            >
+              No Image
+            </Box>
           </div>
       }
     </div>
