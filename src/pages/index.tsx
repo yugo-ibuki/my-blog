@@ -55,7 +55,8 @@ const Index: NextPage<Props> = (props) => {
                 id: blog.id,
                 title: blog.title,
                 content: blog.content,
-                eyecatch: blog.eyecatch
+                eyecatch: blog.eyecatch,
+                category: blog.category,
               }}
             />
           )
