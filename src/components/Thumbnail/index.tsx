@@ -7,22 +7,33 @@ type ThumbnailProps = {
 
 export const Thumbnail: FC<ThumbnailProps> = ({ eyecatch }) => {
   return (
-    <div>
+    <>
       {
         !!eyecatch?.url ?
           <img src={eyecatch.url} alt="" />
           :
-          <div className={'w-full h-[221px] bg-gray-200 relative'} >
-            <Box
-              className={'absolute left-[50%] top-[50%]'}
-              sx={{
-                transform: 'translate(-50%, -50%)',
-              }}
-            >
-              No Image
-            </Box>
-          </div>
+          <Box
+            className={'flex flex-col relative'}
+            sx={{
+              '&:before': {
+                'content': '""',
+                'display': 'block',
+                'padding': '53% 0 0',
+                'width': '100%',
+                'background': 'grey',
+              },
+              '&:after': {
+                'content': '"No Image"',
+                'display': 'block',
+                'position': 'absolute',
+                'top': '50%',
+                'left': '50%',
+                'transform': 'translate(-50%, -50%)',
+                'color': 'white',
+              }
+            }}
+          />
       }
-    </div>
+    </>
   )
 }

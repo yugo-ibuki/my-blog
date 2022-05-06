@@ -26,7 +26,7 @@ export const Post: FC<PostProps> = ({blog}) => {
   return (
     <Grid.Col className={'w-1/2 max-w-[50%]'}>
       <Link href={`/blogs/${blog.id}`}>
-        <a>
+        <a className={'flex flex-col w-full'}>
           <Thumbnail eyecatch={blog.eyecatch} />
           <Title order={2} className={'mt-5 mb-3'} >
             {blog.title}
