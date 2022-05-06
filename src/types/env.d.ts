@@ -1,6 +1,6 @@
 declare namespace NodeJS {
   interface ProcessEnv {
-    readonly MICROCMS_KEY
-    readonly MICROCMS_SERVICE_NAME
+    readonly NEXT_PUBLIC_MICROCMS_KEY
+    readonly NEXT_PUBLIC_MICROCMS_SERVICE_NAME
   }
 }
