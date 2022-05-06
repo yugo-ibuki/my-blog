@@ -28,7 +28,7 @@ export const Post: FC<PostProps> = ({blog}) => {
       <Link href={`/blogs/${blog.id}`}>
         <a className={'flex flex-col w-full'}>
           <Thumbnail eyecatch={blog.eyecatch} />
-          <Title order={2} className={'mt-5 mb-3'} >
+          <Title order={2} className={'mt-5 mb-3 text-lg'} >
             {blog.title}
           </Title>
           <Text lineClamp={2}>
