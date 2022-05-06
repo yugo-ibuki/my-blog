@@ -2,6 +2,11 @@ import { FC } from 'react'
 import Link from 'next/link'
 import { Thumbnail } from '../Thumbnail'
 import { Grid, Title, Text } from '@mantine/core'
+import { MicroCMSContentId, MicroCMSDate } from 'microcms-js-sdk/dist/esm'
+
+export type Category = MicroCMSContentId & MicroCMSDate & {
+  name: string
+}
 
 export type Blog = {
   id: string
@@ -10,6 +15,7 @@ export type Blog = {
   eyecatch: {
     url: string
   }
+  category: Category[]
 }
 
 type PostProps = {

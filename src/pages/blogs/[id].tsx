@@ -27,7 +27,9 @@ const BlogId: NextPage<Props> = (props) => {
           />
         </div>
         <div className={'border rounded h-2/6 w-[20%] p-5 border-cyan-300 flex flex-wrap gap-2'}>
-          <Tag text={'text'}/>
+          {
+            props.category.map(cat => <Tag key={cat.id} cat={cat.name}/>)
+          }
         </div>
       </div>
     </div>
