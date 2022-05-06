@@ -10,6 +10,10 @@ a {
   text-decoration: inherit;
 }
 
+* {
+  @apply text-slate-700;
+}
+
 body {
   margin: 0; /* 1 */
   line-height: inherit; /* 2 */
