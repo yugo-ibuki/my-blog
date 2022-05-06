@@ -12,7 +12,7 @@ export const Thumbnail: FC<ThumbnailProps> = ({ eyecatch }) => {
         !!eyecatch?.url ?
           <img src={eyecatch.url} alt="" />
           :
-          <div className={'w-full h-[170px] bg-gray-200 relative'} >
+          <div className={'w-full h-[221px] bg-gray-200 relative'} >
             <Box
               className={'absolute left-[50%] top-[50%]'}
               sx={{
